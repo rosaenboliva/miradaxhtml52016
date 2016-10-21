@@ -1,0 +1,97 @@
+
+<!DOCTYPE HTML >
+
+<html>
+<head>
+<title>Calculadora en JS</title>
+<style type="text/css">
+
+ body{
+  background: black;
+  text-align: center;
+  color: white;
+ }
+
+</style>
+
+<script>
+function calcula(operacion){
+    var operando1 = document.calc.operando1.value
+    var operando2 = document.calc.operando2.value
+    var result = eval(operando1 + operacion + operando2)
+    document.calc.resultado.value = result
+}
+</script> 
+
+
+<title>Cuadrado-Inverso-Raiz</title>
+<meta charset="utf-8">
+
+<script type="text/javascript">
+
+function vaciar () {
+  document.getElementById("n1").value = "";
+}
+
+function cuadrado() {
+  var num = document.getElementById("n1");
+  num.value = num.value * num.value;
+  
+}
+
+function inverso() {
+  var num = document.getElementById("n1");
+  num.value = 1/num.value;
+}
+
+function sqrt() {
+  var num = document.getElementById("n1");
+  num.value=Math.sqrt(num.value);
+}
+
+
+  </script>
+</head>
+
+
+<body>
+
+
+<h1 id="h1">Una calculadora</h1>
+ 
+
+Digite Número:
+  <input type="text" id="n1" onclick="vaciar()">
+  <p>
+    <button onclick="cuadrado()">x<sup>2</sup></button>
+    <button onclick="inverso()"> 1/x </button>
+    <button onclick="sqrt()">Math.sqrt</button>
+  </p>
+
+ </p>
+<form name="calc">
+
+<p>Digite primer numero: <input type="Text" name="operando1" value="" size="15"></p>
+
+<p>Digite segundo numero: <input type="Text" name="operando2" value="" size="15"></p>
+
+<p>Que operacion desea realizar:
+
+<input type="Button" name="" value=" + " onclick="calcula('+')">
+<input type="Button" name="" value=" - " onclick="calcula('-')">
+<input type="Button" name="" value=" X " onclick="calcula('*')">
+<input type="Button" name="" value=" / " onclick="calcula('/')">
+<input type="Button" name="" value=" X elevado Y " onclick="calcula('+Math.pow(operando1, operando2);')">
+
+</p>
+
+El resultado es:
+<input type="Text" name="resultado" value="0" size="15"><p>
+
+
+
+</form> 
+
+</body>
+</html>
+
