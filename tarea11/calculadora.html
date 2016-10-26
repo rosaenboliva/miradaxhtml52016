@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Mod5_Entrega P2P obligatoria</title>
+<meta charset="utf-8">
+<style type="text/css">
+body
+{
+  background: black;
+  text-align: center;
+  color: white;
+}
+.columna {
+  height: 40px;
+  margin-bottom:0.2em;
+  display:flex;
+  flex-direction: row;
+}
+button {
+  display:block;
+  margin-right:0.2em;
+  height:30px;
+  width:60px;
+  text-align:center;
+}
+</style>
+<script type="text/javascript" 
+        src="https://code.jquery.com/jquery-2.1.4.min.js" >
+</script>
+
+<script type="text/javascript">
+  var op = "", acc;
+
+ $(function() { $("#n1").on("click", 
+      function() {$("#n1").val("");})
+
+    $("#b1").on("click", 
+      function() {
+        var num = $("#n1");
+        num.val(num.val() * num.val());
+      }
+    );
+    $("#b2").on("click", 
+      function() {
+        var num = $("#n1");        
+        num.val(1/num.val());
+      }
+    );
+    $("#b3").on("click", 
+      function() {
+        var num = $("#n1");
+        num.val(Math.sqrt(num.val()));
+      }
+    );
+    $("#b4").on("click", 
+      function() {
+        var num = $("#n1");
+        num.val((num.val() >= 0) ? Math.floor(num.val()) : -Math.ceil(num.val()));
+      }
+    );
+    $("#b5").on("click", 
+      function() {
+        var num = $("#n1"), n = num.val();
+        for (var res = 1; n !== 0; n--) res = res * 2;   
+        return num.val(res);
+      }
+    );
+    $("#b6").on("click", 
+      function() {
+        var num = $("#n1"), n = num.val();
+        for (var res = 1; n !== 0; n--) res = res * n;   
+        return num.val(res);
+      }
+    );  
+
+
+
+    $("#b7").on("click", 
+      function() {
+        var num = $("#n1");
+        acc = num.val();
+        op = "+";
+      }
+    );
+    $("#b8").on("click", 
+      function() {
+        var num = $("#n1");
+        acc = num.val();
+        op = "-";
+      }
+    );
+    $("#b9").on("click", 
+      function() {
+        var num = $("#n1");
+        acc = num.val();
+        op = "*";
+      }
+    );
+    $("#b10").on("click", 
+      function() {
+        var num = $("#n1");
+        acc = num.val();
+        op = "/";
+      }
+    );
+    $("#b11").on("click", 
+      function() {
+        var num = $("#n1");
+        acc = num.val();
+        op = "^";
+      }
+    );
+
+    $("#b12").on("click", 
+      function() {
+        var num = $("#n1");
+        if (op === "+")         {num.val(+acc + +num.val())}
+        if (op === "-")         {num.val(acc - num.val())}
+        if (op === "*")         {num.val(acc * num.val())}
+        if (op === "/")         {num.val(acc / num.val())}
+        if (op === "^")         {num.val(Math.pow(acc, num.val()))}
+      }
+    );
+
+    $("#b13").on("click", 
+      function () {
+        var num = $("#n1"), lista = num.val().split(",");
+        for (var i = 0, acc = 0; i < lista.length; i++) { acc += +lista[i]; }
+        num.val(acc);
+      }
+    );    
+    $("#b14").on("click", 
+      function () {
+        var num = $("#n1"), lista = num.val().split(",");
+        for (var i = 0, acc = 1; i < lista.length; i++) { acc = acc * +lista[i]; }
+        num.val(acc);
+      }
+    );
+  }); 
+
+  // Mensaje bienvenida
+
+  function saludo () { 
+    var fecha = new Date(); 
+    if      (fecha.getHours() < 7)  { return ("Buenas noches, bienvenid@ a la calculadora de ROSAISELA ARUQUIPA");}
+    else if (fecha.getHours() < 12) { return ("Buenos días, bienvenid@ a la calculadora de ROSAISELA ARUQUIPA");}
+    else if (fecha.getHours() < 21) { return ("Buenas tardes, bienvenid@ a la calculadora de ROSAISELA ARUQUIPA");}
+    else                            { return ("Buenas noches, bienvenid@ a la calculadora de ROSAISELA ARUQUIPA");};
+  };
+  $(function() { $('#mensaje').html(saludo()); });
+
+</script>
+</head>
+
+<body>
+
+  <h1 id="mensaje"></h1>
+  Número:
+  <input type="text" size="12" id="n1"><p></p>
+  <div class="columna">
+    <em>Operaciones unitarias =></em>
+    <button id="b1"> x<sup>2 </sup> </button>
+    <button id="b2"> 1/x </button> 
+    <button id="b3"> sqrt(x) </button> 
+    <button id="b4"> pent(x) </button>
+    <button id="b5"> 2<sup>x </button> 
+    <button id="b6"> x! </button><p></p> 
+  </div>
+  <div class="columna"> 
+    <em>Operaciones binarias  =></em>
+    <button id="b7"> + </button>
+    <button id="b8"> - </button>
+    <button id="b9"> * </button>
+    <button id="b10"> / </button>   
+    <button id="b11"> x<sup>y </button>
+    <button id="b12"> = </button><p></p>
+  </div>
+  <div class="columna"> 
+    <em>Operaciones n operandos separados por comas => </em>
+    <button id="b13"> Suma(x) </button>
+    <button id="b14"> Prod(x) </button><p></p> 
+  </div>
+
+</body>
+</html>
