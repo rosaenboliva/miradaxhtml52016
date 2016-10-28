@@ -1,0 +1,394 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Entrega P2P obligatoria</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/jquery.ui.touch-punch.min.js"></script>
+<script src="js/bootstrap.js"></script>
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+    .container
+    {
+        background: #ccc;
+        padding: 40px 0px;
+    }
+
+    #calculadora {
+        width: 290px;
+        height: 500px;
+        border: 3px solid lightgrey;
+        border-radius: 10px;
+        border-style: outset;
+        padding: 20px 10px 10px 0px;
+        margin: 0 auto;
+        background-color: azure;
+        background: gray; 
+        background: -moz-linear-gradient(gray 5%, #b5bdc8 100%);
+        background: -webkit-linear-gradient(gray 5%, gray 100%);
+        background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0.05, gray), to(#b5bdc8));
+        background: -o-linear-gradient(gray 5%, #b5bdc8 100%);
+        background: linear-gradient(gray 5%, #b5bdc8 100%); 
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#28343b',endColorstr='#b5bdc8',GradientType=0 );
+    }
+    #memo {
+        text-emphasis-color: aliceblue ;
+    }
+    #TxtNumero {
+        width: 210px; 
+        text-align: right;
+    }
+    #Memoria{
+        text-align: right ;
+        width: 210px;
+        text-decoration-color: azure;    
+    }  
+    #teclas{
+        color:black;
+        float: left;
+    }
+ 
+    
+    #btn1, #btn2, #btn3,
+    #btn4, #btn5, #btn6, #btnDot,
+    #btn7, #btn8, #btn9, #btn0 {
+        background-color: black;
+        height: 50px;
+        width: 50px;
+        color: white;
+       
+        }
+     #BotonMas, #BotonMenos, #BotonMult, #BotonDiv  {
+        background-color: gray;
+        height: 50px;
+        width: 50px;
+        text-emphasis-color: black;
+    } 
+    #BotonTot  {
+        background-color: brown;
+        height: 50px;
+        width: 50px;
+        color: white;
+    }
+    #BotonMad, #BotonMrc{
+        background-color: gray;
+        height: 50px;
+        width: 50px;
+    }
+    #BotonXeY
+    #BotonCuad, #Boton2eN, #BotonInvX, #BotonSqrt,
+    #BotonNFact, #BotonCsvE, #BotonXeY,
+    #BotonCuad, #BotonCsvProd {
+       
+        background-color: darkgray;
+        height: 50px;
+        width: 50px;
+    }
+    #BotonCls, #BotonPEnt {
+        background-color: aquamarine;
+        height: 50px;
+        width: 50px;
+    }
+    #memo{
+        color: azure;
+        }
+    
+</style>
+
+
+<script  type="text/javascript">
+  $(function() {
+   $( "#sortable" ).sortable();
+   $( "#sortable" ).disableSelection();
+  } );
+
+
+function dragstart_handler(ev) {
+
+ ev.dataTransfer.setData("text", ev.target.id);
+ ev.effectAllowed = "copyMove";
+}
+    
+function dragover_handler(ev) {
+ 
+    ev.preventDefault();
+    var num = $("#TxtNumero"), mem = $("#Memoria"), valor = num.val();
+    mem.val(valor);  
+}
+
+function drop_handler(ev) {
+
+  ev.preventDefault();
+  var id = ev.dataTransfer.getData("text");
+ 
+  if (id == "src_move" && ev.target.id == "dest_move")
+    ev.target.appendChild(document.getElementById(id));
+ 
+  if (id == "src_copy" && ev.target.id == "dest_copy") {
+   var nodeCopy = document.getElementById(id).cloneNode(true);
+   nodeCopy.id = "newId";
+   ev.target.appendChild(nodeCopy); 
+  }
+}
+
+function dragend_handler(ev) {
+ 
+  ev.dataTransfer.clearData();
+}
+
+
+/**********************************************/
+ 
+   
+$(document).ready(function () {
+  'use strict';
+
+    //TECLADO NUMÉRICO ------
+    $("#btn1").on("click", function () { addNum("1");});
+    $("#btn2").on("click", function () { addNum("2");});
+    $("#btn3").on("click", function () { addNum("3");});
+    $("#btn4").on("click", function () { addNum("4");});
+    $("#btn5").on("click", function () { addNum("5");});
+    $("#btn6").on("click", function () { addNum("6");});
+    $("#btn7").on("click", function () { addNum("7");});
+    $("#btn8").on("click", function () { addNum("8");});
+    $("#btn9").on("click", function () { addNum("9");});
+    $("#btn0").on("click", function () { addNum("0");});
+
+    $("#btnDot").on("click", function () {
+        addNum(".");
+    } );
+
+    
+    $("#TxtNumero").on("click",   function () { clear();       } );
+    $("#BotonMas").on("click",    function () { chgOper("+");  } );
+    $("#BotonMenos").on("click",  function () { chgOper("-");  } );
+    $("#BotonMult").on("click",   function () { chgOper("*");  } );
+    $("#BotonDiv").on("click",    function () { chgOper("/");  } );
+    $("#BotonTot").on("click",    function () { calcular("="); } );
+    $("#BotonXeY").on("click",    function () { chgOper("X^Y");} );
+    
+    $("#BotonCuad").on("click",   function () {
+         var num = $("#TxtNumero");
+         num.val(+num.val() * +num.val());
+         oper = undefined;
+    } );
+
+    $("#Boton2eN").on("click",    function () {
+        chgOper("X^Y");
+        $("#TxtNumero").val("2");
+        calcular();
+    } );
+
+    $("#BotonInvX").on("click",   function () {
+        var num = $("#TxtNumero");
+        num.val(1 / num.val());
+        oper = undefined;
+    } );
+    
+    $("#BotonSqrt").on("click",   function () {
+        var num = $("#TxtNumero");
+        num.val(Math.sqrt(num.val()));
+        oper = undefined;
+    } );
+    
+    $("#BotonPEnt").on("click",   function () {
+        var num = $("#TxtNumero");
+        num.val(entero(+num.val() ) );
+        oper = undefined;
+    } );
+    
+    $("#BotonNFact").on("click",  function () {
+        var i = 0,
+            num = $("#TxtNumero"),
+            x = entero(+num.val());
+        for (i = x - 1; i > 1; i -= 1) {
+        x = (x * i);}
+        num.val(x);
+        oper = undefined;
+    } );
+    
+   $("#BotonCls").on("click",    function () {
+        clear();
+        oper = undefined;
+    } );
+    
+    /* Operaciones con cadenas CVS */
+    
+    $("#BotonCsvE").on("click", function () {
+        var i = 0, x = 0, num = $("#TxtNumero"),
+            Lista = num.val().replace(/([;])/g, ',').split(',');
+                                                                                     
+        while (i< Lista.length) x += parseInt(Lista[i++]);
+        num.val(x);
+        oper = undefined;
+    } );
+
+    $("#BotonCsvProd").on("click",function () {
+        var i = 0, x = 1, num = $("#TxtNumero"),
+            Lista = num.val().replace(/([;])/g, ',').split(',');
+        
+        while (i< Lista.length) x *= parseInt(Lista[i++]);
+        num.val(x);
+        oper = undefined;
+    } );
+
+   $("#BotonMad").on("click",    function () { 
+        var num = $("#TxtNumero"),
+            mem = $("#Memoria"),
+            valor = num.val();
+        mem.val(valor);
+        oper = undefined;
+    } );
+
+   $("#BotonMrc").on("click",    function () { 
+        var num = $("#TxtNumero"),
+            mem = $("#Memoria"),
+            valor = mem.val();
+        num.val(valor);
+        oper = undefined;
+    } );
+
+});
+
+/*Funciones Llamadas*/
+
+
+var oper = "",
+    acum = "";
+
+function clear() {
+    
+    var num = $("#TxtNumero");
+    num.val("");
+}
+
+function entero(valor) {
+   
+    return (+valor >= 0 ? Math.floor(+valor) : Math.ceil(+valor));
+}
+
+function addNum(digito) {
+    
+    var num = $("#TxtNumero");
+    if (oper === undefined) {
+        clear();
+        oper = "";
+    }
+    num.val(num.val() + digito);
+}
+
+function chgOper(operacion) {
+   
+    oper = operacion;
+    acum = $("#TxtNumero").val();
+    clear();
+}
+
+function calcular() {
+
+    var total = 0,
+        num = $("#TxtNumero"),
+        valor = num.val();
+    if (acum === "" || oper === "" || isNaN(valor)) {
+        return false;
+    }
+
+    if (valor === "") {
+        valor = +acum;
+    }
+
+    if (oper === "X^Y") {
+        total = Math.pow(+acum, +valor);
+    } else {
+      
+        total = eval(acum + oper + valor);
+    }
+
+    num.val(total);
+    oper = undefined;  
+}
+</script>
+
+</head>
+<body>
+<div class="container">
+	<nav class="navbar navbar-inverse ">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#miMenu">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span> 
+				</button>
+					<a class="navbar-brand" href="10-index.html">MOOC</a>
+			</div>
+			<div class="collapse navbar-collapse" id="miMenu">
+				<ul class="nav navbar-nav">
+					<li><a href="10-index.html">INICIO</a></li>
+					<li><a href="10-ejercicio_puzzle.html">PUZZLE</a></li> 
+					<li><a href="opcion.html">CALCULADORA</a></li>
+					<li><a href="#">OPCION 4</a></li> 
+					<li><a href="#">OPCION 5</a></li> 
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="ejercicio">
+        <h1 align="center">Entrega P2P obligatoria</h1>
+			<div id="calculadora" >
+				<ul id="sortable" >
+						<p></p>
+					<div id="display">
+						<div contenteditable="true" draggable="true" id="Total" ondragstart="dragstart_handler(event);" ondragend="dragend_handler(event);" ondragover="dragover_handler(event);">
+							<input id="TxtNumero" type="text" ondrop="drop_handler(event);">
+						</div>
+							<br/> 
+					</div>
+					
+
+					<div class = "teclado">
+						<p id="teclas">
+							<button id="BotonMad">M</button>          
+							<button id="BotonMrc">Mr</button>
+							<button id="BotonPEnt">Int</button>
+							<button id="BotonCls">C</button>  
+							<button id="BotonMas">+</button>
+							<button id="BotonMenos">-</button>
+							<button id="BotonMult">*</button>
+							<button id="BotonDiv">/</button>
+							<button id="BotonXeY">X<sup>y</sup></button>
+							<button id="BotonCuad">X<sup>2</sup></button>
+							<button id="Boton2eN">2<sup>n</sup></button>
+							<button id="BotonInvX">1/x</button>
+							<button id="BotonSqrt">&#8730</button>
+							<button id="BotonNFact">n!</button>
+							<button id="BotonCsvE">csv.Ʃ</button>
+							<button id="BotonCsvProd">csv.*</button> 
+                            <button id="btn1">1</button>
+                            <button id="btn2">2</button>
+                            <button id="btn3">3</button>
+                            <button id="btn4">4</button>
+                            <button id="btn5">5</button>
+                            <button id="btn6">6</button>
+                            <button id="btn7">7</button>
+                            <button id="btn8">8</button>
+                            <button id="btn9">9</button>
+                            <button id="btn0">0</button>
+                            <button id="btnDot">.</button>  
+                            <button id="BotonTot">=</button>            
+						</p>
+					</div>
+				</ul>
+			</div>
+				
+	</div>
+</div>
+</body>
+</html>
+
