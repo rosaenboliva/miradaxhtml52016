@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Modulo 7 - Entrega P2P obligatoria</title>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/jquery-ui.css">
+  <link href="css/citas.css" rel="stylesheet">
+
+
+   <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/jquery-ui.min.js"></script>
+  <script src="js/jquery.ui.touch-punch.min.js"></script>
+  <script src="js/citas.js"></script>
+</head>
+
+<body>
+  <div class="container">
+      
+      <div id="tabs" class="panel">
+        <ul>
+          <li><a href="#tab1" data-tabindex="1">Carousel</a></li>
+          
+        </ul>
+      
+        <div id="tab1">
+          <p id="msgNoCitas"> No existen citas</p>
+          
+          <div id="carousel" class="contenido">
+            <section id="caja">
+              <img id="foto" alt="" />
+              
+              <div class="textos">
+                <p id="frase"></p>
+                <p id="persona"></p>
+              </div>
+            </section>
+            
+            <div id="carosuel_selector"> 
+              <ul id="selector"></ul>
+            </div>
+          </div>
+        </div>
+        
+        
+      </div>
+    
+      <div id="botonera">
+               
+        <div id="btnAdd" class="btn">
+          <img class="icon-sm-mid" src="images/plus-black.svg" title="Añadir cita"/>
+        </div>
+        
+        <div id="btnEdit" class="btn">
+          <img class="icon-sm-mid" src="images/edit-black.svg" title="Editar cita"/>
+        </div>
+        
+        <div id="btnDel" class="btn">
+          <img class="icon-sm-mid" src="images/delete-black.svg" title="Eliminar cita"/>
+        </div>
+      </div>
+      
+      <div id="nuevaCita">
+        <input id="txtCita" type="text" placeholder="Escribe una cita"/>
+        <input id="txtPersona" type="text" placeholder="¿Quién lo dijo?"/>
+        <input id="txtImagen" type="text" placeholder="Ruta de la imagen"/>
+        
+        <div id="btnOk" class="btn">
+          <img class="icon-sm-mid" src="images/Save_font_awesome.svg.png" alt="ok" title="Guardar cita" width="25" />
+        </div>
+      </div>
+    </div>
+ 
+  
+ 
+  
+  <footer>
+   <p align="center">RAM</p>
+  </footer>
+</body>
+
+</html>

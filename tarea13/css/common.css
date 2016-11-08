@@ -1,0 +1,277 @@
+* {
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v11/8qcEw_nrk_5HEcCpYdJu8BTbgVql8nDJpwnrE27mub0.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v11/MDadn8DQ_3oT6kvnUq_2r_esZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+@media (orientation:landscape){ 
+  #sortable {
+    width: 100vh;
+  }
+}
+
+@media (orientation:portrait) {
+  #sortable {
+    width: 100%;
+  }
+}
+
+/** 
+ * iPad with portrait orientation.
+ */
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
+  .foo {
+    height: 1024px;
+  }
+}
+
+/** 
+ * iPad with landscape orientation.
+ */
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
+  .foo {
+    height: 768px;
+  }
+}
+
+/**
+ * iPhone 5
+ * You can also target devices with aspect ratio.
+ */
+@media screen and (device-aspect-ratio: 40/71) {
+  .foo {
+    height: 500px;
+  }
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+html {
+ font-size: 10px;
+}
+
+body {  
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+}
+
+
+.contents{
+  text-align: justify;
+  margin: 1.3em auto 3em auto;
+  width: 70%;
+  overflow: auto;
+  background: #f2f5f6;
+  background: -webkit-linear-gradient(#f2f5f6 38%, #f2f5f6 38%, #c6ccce 99%);
+  background: -o-linear-gradient(#f2f5f6 38%, #f2f5f6 38%, #c6ccce 99%);
+  background: linear-gradient(#f2f5f6 38%, #f2f5f6 38%, #c6ccce 99%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', endColorstr='#c6ccce',GradientType=0 );
+  border: solid 1px rgba(0,0,0,0.09);
+  border-radius: 20px;
+  box-shadow: 10px 15px 70px rgba(0,0,0,0.66);
+}
+
+
+.content header {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+.content p, .content span {
+  margin: .3em 0 .3em .3em;
+}
+
+
+.bold {
+  font-weight: bold; 
+}
+
+
+.subheader {
+    padding: .3em 1.9em 1em 1.9em;
+}
+
+
+.font-size-8{
+    font-size: .8em;
+}
+
+.container {
+  margin-top: 5.1em;
+}
+
+div.carousel-inner div.item img{
+  width: 100%;
+}
+
+
+h1, h2, h3, h4, h5{
+  border-radius: 10px;
+  background-color: rgba(0,0,0,0.1);
+  padding: .1em 0 .1em .4em;
+  margin: 1em .5em .5em 0;
+  width: 100%;
+}
+
+
+fieldset {
+  border: 2px solid rgba(0,0,0,0.07);
+  padding-bottom: 1.5em;
+  margin-bottom: 2em;
+  margin: 0 2em 1.5em 2em;
+}
+
+
+fieldset legend {
+  font-size: 1.6em;
+  margin-left: .8em;
+}
+
+
+fieldset iframe, fieldset video {
+  margin-left: 1em;
+  border: 2px solid rgba(0,0,0,0.4); 
+}
+
+
+fieldset img {
+    margin-left: 1em;
+}
+
+
+.rounded-corners-5 {
+  border-radius: 5px;
+}  
+
+.rounded-corners-10, fieldset {
+  border-radius: 10px;
+}
+
+
+#sortable { 
+  list-style-type: none;
+   margin-left: 28%;
+   margin-right: auto;
+   width: 56%;
+   
+}
+
+#sortable li { 
+  float: left; 
+  width: 26%; 
+}
+
+#sortable li img {
+  vertical-align:bottom;
+  width: 100%; 
+  height: auto;
+}
+
+
+ul.nav.navbar-nav li a {
+  font-size: 1.7em;
+}
+
+
+.panel {
+  border-radius: 10px;
+  border: solid 1px rgba(0, 0, 0, 0.09);
+  padding: 1.3em;
+  background-color: #F8F8F8; 
+}
+
+
+.pointer {
+  cursor: pointer;
+}
+
+
+.icon-sm {
+  width: 16px;
+  height: 16px;
+}
+
+
+.icon-sm-mid {
+  width: 22px;
+  height: 22px;
+}
+
+
+.icon-mid {
+  width: 32px;
+  height: 32px;
+}
+
+
+.icon-lg {
+  width: 48px;
+  height: 48px;
+}
+
+#myCarousel {
+  display: none;
+}
+
+:focus{
+  outline-style: none;
+}
+
+a:focus{
+  outline-style: none;
+}
+
+.ui-tabs a{
+  font-size: 1.4em;
+}
+
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
+  color: #000;
+}
+
+.ui-tabs .ui-tabs-nav li {
+  background: #E9E9E9;
+  color: #000;
+  cursor: pointer;
+  border: 1px solid rgba(0,0,0,0.09);
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+  background: #F8F8F8;
+  color: #000;
+  cursor: pointer;
+  border: 1px solid rgba(0,0,0,0.09);
+}
+
+
+footer {
+  background-color: #F8F8F8;
+  padding: 2em;
+  width: 100%;
+  font-size: 1.4em;
+  
+}
